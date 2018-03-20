@@ -124,7 +124,39 @@ public class Count {
 		}
 	}
 	
-	
+	//得到停用词列表
+	public ArrayList<String> stop(String stopFile){
+		FileReader fr=null;
+		BufferedReader br=null;
+		ArrayList<String> stopList = new ArrayList<String>();
+		String[] str=null;
+		String s=null;
+		
+		try {
+			fr=new FileReader(new File(stopFile));
+			br=new BufferedReader(fr);
+			while((s=br.readLine())!=null){
+				str=s.split(" ");
+				for(int i=0;i<str.length;i++)
+					stopList.add(str[i]);
+			}
+			return stopList;
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			try {
+				br.close();
+				fr.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return stopList;
+	}
 	
 	
 }
